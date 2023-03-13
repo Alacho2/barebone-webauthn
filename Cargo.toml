@@ -1,0 +1,18 @@
+[package]
+name = "barebone"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+serde = { version = "1", features = ["derive"] }
+uuid = {version="1.1.2", features=["v4"]}
+axum-sessions = "0.4.1"
+axum = {version = "0.6.1", features = ["http2"]}
+tower = "0.4.13"
+tower-http = {version="0.4.0", features=["cors"]}
+webauthn-rs = { version="0.4.8", features =["danger-allow-state-serialisation"] }
+tokio = {version="1.19.2", features = ["full"]}
+rand = {version="0.8", features=["min_const_gen"]}
+thiserror = "1.0.31"
+jsonwebtoken = "8.2.0"
+chrono = "0.4.23"
