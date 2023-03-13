@@ -29,12 +29,10 @@ pub struct AppState {
 }
 
 impl AppState {
-    pub fn new() -> Self {
-        // let rp_id = "localhost";
-        let rp_id = "lcinncgkpdbmincnojedpklnmnbifmmj";
-        // let rp_origin = Url::parse("http://localhost:8080").expect("Invalid URL");
-        let rp_origin = Url::parse("chrome-extension://lcinncgkpdbmincnojedpklnmnbifmmj").expect
-        ("Invalid URL");
+    pub fn new(id: &str) -> Self {
+        let rp_id = id;
+        let rp_origin = Url::parse(format!("chrome-extension://{}", id).as_str())
+          .expect("Invalid URL");
         let builder = WebauthnBuilder::new(rp_id, &rp_origin).expect("Invalid configuration");
 
         // Now, with the builder you can define other options.

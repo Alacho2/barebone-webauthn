@@ -36,7 +36,9 @@ compile_error!("Feature \"javascript\" and feature \"wasm\" cannot be enabled at
 #[tokio::main]
 async fn main() {
 
-    let app_state = AppState::new();
+    let id = "lcinncgkpdbmincnojedpklnmnbifmmj";
+
+    let app_state = AppState::new(id);
 
     let store = MemoryStore::new();
     let secret = thread_rng().gen::<[u8; 128]>(); // MUST be at least 64 bytes!
@@ -55,7 +57,7 @@ async fn main() {
         .layer(session_layer)
         .layer(CorsLayer::new()
         .allow_origin(
-            "chrome-extension://lcinncgkpdbmincnojedpklnmnbifmmj"
+            format!("chrome-extension://{}", id)
               .parse::<HeaderValue>()
               .unwrap()
         ).allow_methods([Method::GET, Method::POST])
